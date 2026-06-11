@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	// import { ROUTES } from '$lib/constants/routes';
 
 	function startQuiz() {
-		// goto(ROUTES.QUIZ);
         goto('/quiz')
 	}
 </script>
@@ -30,9 +28,13 @@
 	}
 
 	button {
-		padding: 0.75rem 1.5rem;
+		padding: 0.75rem 2rem;
 		cursor: pointer;
 		border: none;
 		border-radius: 6px;
+		background: #1f2937;
+		color: white;
+		font-size: 1rem;
+		font-weight: 500;
 	}
 </style>

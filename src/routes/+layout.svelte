@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from "$lib/components/layout/header.svelte";
 	import Footer from "$lib/components/layout/footer.svelte";
+	import '../styles/global.css';
 	const { children } = $props();
 </script>
 
