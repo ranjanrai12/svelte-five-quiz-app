@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "type": "multiple",
+    "question": "Which of the following are Svelte life-cycle functions?",
+    "options": ["onMount", "useEffect", "beforeUpdate", "onDestroy"],
+    "correctAnswer": ["onMount", "beforeUpdate", "onDestroy"],
+    "hint": "Pick three. Svelte doesn't use React's 'useEffect' hook!"
+  },
+  {
+    "id": 2,
+    "type": "radio",
+    "question": "In Svelte, what character is used to mark a declaration as reactive?",
+    "options": ["$", "@", "#", "&"],
+    "correctAnswer": "$",
+    "hint": "It's often referred to as the 'destiny' operator."
+  },
+  {
+    "id": 3,
+    "type": "textbox",
+    "question": "What is the name of the tool used to compile Svelte components into highly optimized JavaScript?",
+    "options": [],
+    "correctAnswer": "Svelte Compiler",
+    "hint": "It starts with the name of the framework itself."
+  },
+  {
+    "id": 4,
+    "type": "textarea",
+    "question": "Briefly describe how Svelte differs from frameworks like React or Vue in terms of the 'Virtual DOM'.",
+    "options": [],
+    "correctAnswer": "Svelte does not use a Virtual DOM; it compiles code to surgical DOM updates at build time.",
+    "hint": "Think about 'Build time' vs 'Run time'."
+  },
+  {
+    "id": 5,
+    "type": "radio",
+    "question": "Which command is typically used to create a new Svelte project via the terminal?",
+    "options": ["npm init svelte@latest", "npm install svelte", "svelte create-app", "npx svelte-new"],
+    "correctAnswer": "npm init svelte@latest",
+    "hint": "The official documentation recommends the 'init' command."
+  }
+]

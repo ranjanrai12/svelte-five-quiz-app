@@ -1,13 +1,15 @@
 <script lang="ts">
-	const { children } = $props()
+	import Header from "$lib/components/layout/header.svelte";
+	import Footer from "$lib/components/layout/footer.svelte";
+	const { children } = $props();
 </script>
 
 <div class="main-quiz-container-app">
-	<!-- <Header /> -->
+	<Header />
 	<main>
-		{@render children() }
+		{@render children()}
 	</main>
-	<!-- <Footer /> -->
+	<Footer />
 </div>
 
 <style>
