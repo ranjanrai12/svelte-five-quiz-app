@@ -76,10 +76,6 @@
 				font-weight: 600;
 				color: #111827;
 			}
-
-			&.timer {
-				font-variant-numeric: tabular-nums;
-			}
 		}
 
 		.divider {
