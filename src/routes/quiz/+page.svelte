@@ -6,15 +6,17 @@
     import { goto } from "$app/navigation";
 
     const currentQuestion = $derived(quiz.allQuestions[quiz.currentIndex]);
-    const givenAnsweredCount = $derived(quiz.answers.size);
-    const allAnswered = $derived(quiz.allQuestions.length === quiz.answers.size);
+    const answeredCount = $derived(quiz.answers.size);
+    const allAnswered = $derived(quiz.allQuestions.length > 0 && quiz.allQuestions.length === quiz.answers.size);
 
     const textValue = $derived.by(() => {
+        if (!currentQuestion || currentQuestion.type === 'multiple') return '';
         const saved = quiz.getAnswer(currentQuestion.id);
         return typeof saved === "string" ? saved : "";
     });
 
     const multipleValue = $derived.by(() => {
+        if (!currentQuestion || currentQuestion.type !== 'multiple') return [];
         const saved = quiz.getAnswer(currentQuestion.id);
         return Array.isArray(saved) ? [...saved] : [];
     });
@@ -25,7 +27,6 @@
     });
 
     function handleTextChange(value: string) {
-        // handle the empty string use case
         value.trim()
             ? quiz.setAnswer(currentQuestion.id, value)
             : quiz.deleteAnswer(currentQuestion.id);
@@ -36,7 +37,6 @@
     }
 
     function toggleOption(option: string) {
-        //  true means user already slected previosly and now deselecting, else it's a new item got selected
         const next = multipleValue.includes(option)
             ? multipleValue.filter((o) => o !== option)
             : [...multipleValue, option];
@@ -54,11 +54,13 @@
 
 {#if quiz.loading}
     <div class="status">Loading.....</div>
+{:else if quiz.errorMessage}
+    <div class="status error">{quiz.errorMessage}</div>
 {:else if currentQuestion}
     <div class="quiz-wrapper">
         <ProgressBarReport
             total={quiz.allQuestions.length}
-            answered={givenAnsweredCount}
+            answered={answeredCount}
             elapsed = {quiz.timeElapsed}
             {allAnswered}
             onsubmit = {handleSubmit}
@@ -96,6 +98,16 @@
 {/if}
 
 <style lang="scss">
+    .status {
+        text-align: center;
+        margin-top: 3rem;
+        color: #6b7280;
+
+        &.error {
+            color: #dc2626;
+        }
+    }
+
     .quiz-wrapper {
         max-width: 680px;
         margin: 0 auto;
@@ -111,6 +123,14 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+        }
+
+        .progress {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         h2 {

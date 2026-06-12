@@ -3,7 +3,7 @@ import type { QuizQuestion } from "$lib/types/quiz";
 
 class QuizState {
     allQuestions = $state<QuizQuestion[]>([])
-    errorMessgae = $state<string | null>(null);
+    errorMessage = $state<string | null>(null);
     loading = $state(false);
     currentIndex = $state(0)
     answers = $state<Map<number, string | string[]>>(new Map());
@@ -17,7 +17,7 @@ class QuizState {
             this.allQuestions = await fetchQuestions();
             this.startTimer();
         } catch (e) {
-            this.errorMessgae = e instanceof Error ? e.message : 'Something went wrong'
+            this.errorMessage = e instanceof Error ? e.message : 'Something went wrong'
         } finally {
             this.loading = false
         }
@@ -57,7 +57,7 @@ class QuizState {
         this.answers = new Map();
         this.currentIndex = 0;
         this.timeElapsed = 0;
-        this.errorMessgae = null;
+        this.errorMessage = null;
     }
 
     private startTimer() {
