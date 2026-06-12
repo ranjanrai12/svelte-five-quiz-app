@@ -7,11 +7,15 @@ class QuizState {
     loading = $state(false);
     currentIndex = $state(0)
     answers = $state<Map<number, string | string[]>>(new Map());
+    timeElapsed = $state(0);
+
+    private quizIntervalId: null | number = null;
 
     async loadQuestions() {
         this.loading = true;
         try {
-            this.allQuestions = await fetchQuestions()
+            this.allQuestions = await fetchQuestions();
+            this.startTimer();
         } catch (e) {
             this.errorMessgae = e instanceof Error ? e.message : 'Something went wrong'
         } finally {
@@ -43,11 +47,29 @@ class QuizState {
         this.currentIndex++;
     }
 
+    submitQuiz() {
+        this.stopTimer();
+    }
+
     resetQuiz() {
+        this.stopTimer();
         this.allQuestions = [];
         this.answers = new Map();
         this.currentIndex = 0;
         this.errorMessgae = null;
+    }
+
+    private startTimer() {
+        this.quizIntervalId = setInterval(() => {
+            this.timeElapsed++;
+        }, 1000)
+    }
+
+    private stopTimer() {
+        if(this.quizIntervalId !== null) {
+            clearInterval(this.quizIntervalId);
+            this.quizIntervalId = null;
+        }
     }
 }
 
