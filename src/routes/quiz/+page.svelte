@@ -2,8 +2,11 @@
     import { onMount } from "svelte";
     import QuestionInput from "$lib/components/quiz/QuestionInput.svelte";
     import { quiz } from "$lib/state/quiz.svelte";
+    import ProgressBarReport from "$lib/components/quiz/ProgressBarReport.svelte";
 
     const currentQuestion = $derived(quiz.allQuestions[quiz.currentIndex]);
+    const givenAnsweredCount = $derived(quiz.answers.size);
+    const allAnswered = $derived(quiz.allQuestions.length === quiz.answers.size);
 
     const textValue = $derived.by(() => {
         const saved = quiz.getAnswer(currentQuestion.id);
@@ -43,7 +46,7 @@
     }
 
     function handleSubmit() {
-        console.log("handle submit");
+        quiz.submitQuiz();
     }
 </script>
 
@@ -51,6 +54,13 @@
     <div class="status">Loading.....</div>
 {:else if currentQuestion}
     <div class="quiz-wrapper">
+        <ProgressBarReport
+            total={quiz.allQuestions.length}
+            answered={givenAnsweredCount}
+            elapsed = {quiz.timeElapsed}
+            {allAnswered}
+            onsubmit = {handleSubmit}
+        />
         <section class="quiz">
             <p class="progress">
                 Question {quiz.currentIndex + 1} of {quiz.allQuestions.length}

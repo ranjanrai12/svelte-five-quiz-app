@@ -66,7 +66,7 @@ class QuizState {
     }
 
     private stopTimer() {
-        if(this.quizIntervalId !== null) {
+        if (this.quizIntervalId !== null) {
             clearInterval(this.quizIntervalId);
             this.quizIntervalId = null;
         }
