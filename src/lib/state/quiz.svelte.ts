@@ -56,6 +56,7 @@ class QuizState {
         this.allQuestions = [];
         this.answers = new Map();
         this.currentIndex = 0;
+        this.timeElapsed = 0;
         this.errorMessgae = null;
     }
 
