@@ -66,7 +66,7 @@
 
 			.stat-label {
 				font-size: 0.7rem;
-				color: #9ca3af;
+				color: var(--text-subtle);
 				text-transform: uppercase;
 				letter-spacing: 0.05em;
 			}
@@ -74,14 +74,14 @@
 			.stat-value {
 				font-size: 0.95rem;
 				font-weight: 600;
-				color: #111827;
+				color: var(--text);
 			}
 		}
 
 		.divider {
 			width: 1px;
 			height: 2rem;
-			background: #e5e7eb;
+			background: var(--border);
 		}
 
 		.progress-wrap {
@@ -89,13 +89,13 @@
 
 			.progress-bar {
 				height: 6px;
-				background: #e5e7eb;
+				background: var(--border);
 				border-radius: 99px;
 				overflow: hidden;
 
 				.progress-fill {
 					height: 100%;
-					background: #1f2937;
+					background: var(--primary);
 					border-radius: 99px;
 					transition: width 0.3s ease;
 				}
@@ -106,7 +106,7 @@
 			padding: 0.55rem 1.25rem;
 			border: none;
 			border-radius: 6px;
-			background: #1f2937;
+			background: var(--primary);
 			color: white;
 			font-size: 0.875rem;
 			font-weight: 500;
@@ -115,7 +115,7 @@
 			transition: background 0.2s;
 
 			&:hover:not(:disabled) {
-				background: #374151;
+				background: var(--primary-hover);
 			}
 
 			&:disabled {

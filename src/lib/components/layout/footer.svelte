@@ -10,9 +10,9 @@
 		align-items: center;
 		gap: 0.25rem;
 		padding: 1.5rem 2rem;
-		background: #1f2937;
+		background: var(--primary);
 		color: white;
-		border-top: 1px solid #374151;
+		border-top: 1px solid var(--primary-hover);
 	}
 
 	.brand {
@@ -22,6 +22,6 @@
 
 	.copy {
 		font-size: 0.8rem;
-		color: #9ca3af;
+		color: var(--text-subtle);
 	}
 </style>

@@ -12,7 +12,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 1rem 2rem;
-		background: #1f2937;
+		background: var(--primary);
 		color: white;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 	}
@@ -31,7 +31,7 @@
 	}
 
 	nav a {
-		color: #d1d5db;
+		color: var(--border-strong);
 		text-decoration: none;
 		font-size: 0.95rem;
 		transition: color 0.2s;

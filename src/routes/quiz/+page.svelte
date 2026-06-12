@@ -101,10 +101,10 @@
     .status {
         text-align: center;
         margin-top: 3rem;
-        color: #6b7280;
+        color: var(--text-muted);
 
         &.error {
-            color: #dc2626;
+            color: var(--error);
         }
     }
 
@@ -116,7 +116,7 @@
         gap: 1.25rem;
 
         .quiz {
-            background: white;
+            background: var(--surface);
             border-radius: 12px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
             padding: 2rem;
@@ -128,7 +128,7 @@
         .progress {
             font-size: 0.8rem;
             font-weight: 600;
-            color: #9ca3af;
+            color: var(--text-subtle);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -136,14 +136,14 @@
         h2 {
             font-size: 1.2rem;
             line-height: 1.6;
-            color: #111827;
+            color: var(--text);
         }
 
         .actions {
             display: flex;
             gap: 0.75rem;
             padding-top: 0.5rem;
-            border-top: 1px solid #f3f4f6;
+            border-top: 1px solid var(--surface-alt);
         }
 
         .btn-primary,
@@ -163,21 +163,21 @@
         }
 
         .btn-primary {
-            background: #1f2937;
+            background: var(--primary);
             color: white;
             margin-left: auto;
 
             &:hover:not(:disabled) {
-                background: #374151;
+                background: var(--primary-hover);
             }
         }
 
         .btn-secondary {
-            background: #f3f4f6;
-            color: #374151;
+            background: var(--surface-alt);
+            color: var(--primary-hover);
 
             &:hover:not(:disabled) {
-                background: #e5e7eb;
+                background: var(--border);
             }
         }
     }

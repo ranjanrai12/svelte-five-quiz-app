@@ -28,7 +28,7 @@
 		cursor: pointer;
 		border: none;
 		border-radius: 6px;
-		background: #1f2937;
+		background: var(--primary);
 		color: white;
 		font-size: 1rem;
 		font-weight: 500;

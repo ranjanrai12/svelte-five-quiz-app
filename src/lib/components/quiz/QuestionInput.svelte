@@ -66,24 +66,24 @@
 		align-items: center;
 		gap: 0.75rem;
 		padding: 0.75rem 1rem;
-		border: 2px solid #e5e7eb;
+		border: 2px solid var(--border);
 		border-radius: 8px;
 		cursor: pointer;
 		transition: border-color 0.15s, background 0.15s;
 	}
 
 	.option-card:hover {
-		border-color: #9ca3af;
-		background: #f9fafb;
+		border-color: var(--text-subtle);
+		background: var(--bg);
 	}
 
 	.option-card.selected {
-		border-color: #1f2937;
-		background: #f3f4f6;
+		border-color: var(--primary);
+		background: var(--surface-alt);
 	}
 
 	.option-card input {
-		accent-color: #1f2937;
+		accent-color: var(--primary);
 		width: 1rem;
 		height: 1rem;
 		flex-shrink: 0;
@@ -93,7 +93,7 @@
 	textarea {
 		width: 100%;
 		padding: 0.6rem 0.875rem;
-		border: 2px solid #e5e7eb;
+		border: 2px solid var(--border);
 		border-radius: 8px;
 		font-size: 1rem;
 		outline: none;
@@ -102,7 +102,7 @@
 
 	input[type='text']:focus,
 	textarea:focus {
-		border-color: #1f2937;
+		border-color: var(--primary);
 	}
 
 	textarea {

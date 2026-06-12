@@ -132,11 +132,11 @@
 	.percentage {
 		font-size: 1.25rem;
 		font-weight: 400;
-		color: #6b7280;
+		color: var(--text-muted);
 	}
 
 	.time {
-		color: #6b7280;
+		color: var(--text-muted);
 		margin-top: 0.25rem;
 	}
 
@@ -155,13 +155,13 @@
 	}
 
 	.correct {
-		background: #f0fdf4;
-		border-color: #16a34a;
+		background: var(--correct-bg);
+		border-color: var(--correct);
 	}
 
 	.wrong {
-		background: #fef2f2;
-		border-color: #dc2626;
+		background: var(--error-bg);
+		border-color: var(--error);
 	}
 
 	.question-text {
@@ -171,13 +171,13 @@
 
 	.answer-row {
 		font-size: 0.9rem;
-		color: #374151;
+		color: var(--primary-hover);
 		display: flex;
 		gap: 0.4rem;
 	}
 
 	.label {
-		color: #6b7280;
+		color: var(--text-muted);
 	}
 
 	.actions {
@@ -189,7 +189,7 @@
 		padding: 0.65rem 1.5rem;
 		border: none;
 		border-radius: 6px;
-		background: #1f2937;
+		background: var(--primary);
 		color: white;
 		font-size: 0.95rem;
 		cursor: pointer;
@@ -197,15 +197,15 @@
 	}
 
 	button:hover {
-		background: #374151;
+		background: var(--primary-hover);
 	}
 
 	button.secondary {
-		background: #e5e7eb;
-		color: #1f2937;
+		background: var(--border);
+		color: var(--primary);
 	}
 
 	button.secondary:hover {
-		background: #d1d5db;
+		background: var(--border-strong);
 	}
 </style>
