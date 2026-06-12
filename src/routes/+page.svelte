@@ -9,10 +9,6 @@
 <section class="welcome">
 	<h2>Welcome to Quiz Challenge</h2>
 
-	<p>
-		Test your knowledge and improve your skills.
-	</p>
-
 	<button onclick={startQuiz}>
 		Start Quiz
 	</button>
