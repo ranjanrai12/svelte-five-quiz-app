@@ -3,6 +3,7 @@
     import QuestionInput from "$lib/components/quiz/QuestionInput.svelte";
     import { quiz } from "$lib/state/quiz.svelte";
     import ProgressBarReport from "$lib/components/quiz/ProgressBarReport.svelte";
+    import { goto } from "$app/navigation";
 
     const currentQuestion = $derived(quiz.allQuestions[quiz.currentIndex]);
     const givenAnsweredCount = $derived(quiz.answers.size);
@@ -47,6 +48,7 @@
 
     function handleSubmit() {
         quiz.submitQuiz();
+        goto('/quiz/results')
     }
 </script>
 
