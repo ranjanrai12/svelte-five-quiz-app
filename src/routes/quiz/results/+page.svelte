@@ -47,6 +47,7 @@
 	);
 
 	const score = $derived(results.filter((r) => r.correct).length);
+	const percentage = $derived(Math.round((score / quiz.allQuestions.length) * 100));
 
 	function handleRetake() {
 		quiz.resetQuiz();
@@ -62,7 +63,7 @@
 {:else}
 	<section class="results">
 		<div class="summary">
-			<h2>You scored {score} / {quiz.allQuestions.length}</h2>
+			<h2>You scored {score} / {quiz.allQuestions.length} <span class="percentage">({percentage}%)</span></h2>
 			<p class="time">Completed in {formatTime(quiz.timeElapsed)}</p>
 		</div>
 
@@ -126,6 +127,12 @@
 	.summary h2 {
 		font-size: 1.75rem;
 		font-weight: 700;
+	}
+
+	.percentage {
+		font-size: 1.25rem;
+		font-weight: 400;
+		color: #6b7280;
 	}
 
 	.time {
