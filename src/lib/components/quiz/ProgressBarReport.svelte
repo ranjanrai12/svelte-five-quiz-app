@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { formatTime } from "$lib/utils/time";
+
 	interface Props {
 		total: number;
 		answered: number;
@@ -8,12 +10,6 @@
 	}
 
 	const { total, answered, elapsed, allAnswered, onsubmit }: Props = $props();
-
-	function formatTime(seconds: number): string {
-		const m = String(Math.floor(seconds / 60)).padStart(2, "0");
-		const s = String(seconds % 60).padStart(2, "0");
-		return `${m}:${s}`;
-	}
 
 	const progress = $derived(
 		total > 0 ? Math.round((answered / total) * 100) : 0,
@@ -97,7 +93,6 @@
 					height: 100%;
 					background: var(--primary);
 					border-radius: 99px;
-					transition: width 0.3s ease;
 				}
 			}
 		}
@@ -112,7 +107,6 @@
 			font-weight: 500;
 			cursor: pointer;
 			white-space: nowrap;
-			transition: background 0.2s;
 
 			&:hover:not(:disabled) {
 				background: var(--primary-hover);

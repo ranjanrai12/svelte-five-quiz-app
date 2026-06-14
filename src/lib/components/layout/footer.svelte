@@ -1,6 +1,6 @@
 <footer class="footer">
 	<p class="brand">Quiz Challenge</p>
-	<p class="copy">&copy; 2026 All rights reserved.</p>
+	<p class="copy">&copy; 2026 Quiz App for learning.</p>
 </footer>
 
 <style>

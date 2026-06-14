@@ -6,3 +6,9 @@ export interface QuizQuestion {
   correctAnswer: string | string[];
   hint: string;
 }
+
+export interface QuizResult {
+	question: QuizQuestion;
+	userAnswer: string | string[];
+	correct: boolean;
+}
