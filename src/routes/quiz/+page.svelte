@@ -10,11 +10,15 @@
     const allAnswered = $derived(quiz.allQuestions.length > 0 && quiz.allQuestions.length === quiz.answers.size);
 
     const textValue = $derived.by(() => {
+        if (!currentQuestion) return "";
+
         const saved = quiz.getAnswer(currentQuestion.id);
         return typeof saved === "string" ? saved : "";
     });
 
     const multipleValue = $derived.by(() => {
+        if (!currentQuestion) return [];
+
         const saved = quiz.getAnswer(currentQuestion.id);
         return Array.isArray(saved) ? [...saved] : [];
     });
