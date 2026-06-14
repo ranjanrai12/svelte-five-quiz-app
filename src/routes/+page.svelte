@@ -1,17 +1,15 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { goto } from "$app/navigation";
 
 	function startQuiz() {
-        goto('/quiz')
+		goto("/quiz");
 	}
 </script>
 
 <section class="welcome">
 	<h2>Welcome to Quiz Challenge</h2>
 
-	<button onclick={startQuiz}>
-		Start Quiz
-	</button>
+	<button onclick={startQuiz}> Start Quiz </button>
 </section>
 
 <style>

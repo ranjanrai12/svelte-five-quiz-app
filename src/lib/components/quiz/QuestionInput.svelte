@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { QuizQuestion } from "$lib/types/quiz";
+	import type { QuizQuestion } from "$lib/types/quiz";
 
 	interface Props {
 		question: QuizQuestion;
@@ -7,13 +7,20 @@
 		multipleValue: string[];
 		onTextChange: (value: string) => void;
 		onRadioChange: (option: string) => void;
-		onToggle: (option: string) => void;
+		onCheckboxToggle: (option: string) => void;
 	}
 
-	const { question, textValue, multipleValue, onTextChange, onRadioChange, onToggle }: Props = $props();
+	const {
+		question,
+		textValue,
+		multipleValue,
+		onTextChange,
+		onRadioChange,
+		onCheckboxToggle,
+	}: Props = $props();
 </script>
 
-{#if question.type === 'radio'}
+{#if question.type === "radio"}
 	<div class="options">
 		{#each question.options as option}
 			<label class="option-card" class:selected={textValue === option}>
@@ -28,26 +35,29 @@
 			</label>
 		{/each}
 	</div>
-{:else if question.type === 'multiple'}
+{:else if question.type === "multiple"}
 	<div class="options">
 		{#each question.options as option}
-			<label class="option-card" class:selected={multipleValue.includes(option)}>
+			<label
+				class="option-card"
+				class:selected={multipleValue.includes(option)}
+			>
 				<input
 					type="checkbox"
 					checked={multipleValue.includes(option)}
-					onchange={() => onToggle(option)}
+					onchange={() => onCheckboxToggle(option)}
 				/>
 				<span>{option}</span>
 			</label>
 		{/each}
 	</div>
-{:else if question.type === 'textbox'}
+{:else if question.type === "textbox"}
 	<input
 		type="text"
 		value={textValue}
 		oninput={(e) => onTextChange(e.currentTarget.value)}
 	/>
-{:else if question.type === 'textarea'}
+{:else if question.type === "textarea"}
 	<textarea
 		value={textValue}
 		oninput={(e) => onTextChange(e.currentTarget.value)}
@@ -69,7 +79,6 @@
 		border: 2px solid var(--border);
 		border-radius: 8px;
 		cursor: pointer;
-		transition: border-color 0.15s, background 0.15s;
 	}
 
 	.option-card:hover {
@@ -89,7 +98,7 @@
 		flex-shrink: 0;
 	}
 
-	input[type='text'],
+	input[type="text"],
 	textarea {
 		width: 100%;
 		padding: 0.6rem 0.875rem;
@@ -97,10 +106,9 @@
 		border-radius: 8px;
 		font-size: 1rem;
 		outline: none;
-		transition: border-color 0.15s;
 	}
 
-	input[type='text']:focus,
+	input[type="text"]:focus,
 	textarea:focus {
 		border-color: var(--primary);
 	}

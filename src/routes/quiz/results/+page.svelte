@@ -188,7 +188,6 @@
 		color: white;
 		font-size: 0.95rem;
 		cursor: pointer;
-		transition: background 0.2s;
 	}
 
 	button:hover {

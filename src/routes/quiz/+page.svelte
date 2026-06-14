@@ -75,7 +75,7 @@
                 {multipleValue}
                 onTextChange={handleTextChange}
                 onRadioChange={handleRadio}
-                onToggle={toggleOption}
+                onCheckboxToggle={toggleOption}
             />
 
             <div class="actions">

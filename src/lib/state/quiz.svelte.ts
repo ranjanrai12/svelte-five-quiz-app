@@ -13,6 +13,7 @@ class QuizState {
 
     async loadQuestions() {
         this.loading = true;
+        this.errorMessage = null;
         try {
             this.allQuestions = await fetchQuestions();
             this.startTimer();
@@ -30,9 +31,9 @@ class QuizState {
     deleteAnswer(id: number) {
         if (!this.answers.has(id)) return;
 
-        const updated = new Map(this.answers)
-        updated.delete(id)
-        this.answers = updated
+        const updatedAnswers = new Map(this.answers)
+        updatedAnswers.delete(id)
+        this.answers = updatedAnswers
     }
 
     getAnswer(id: number): string | string[] | undefined {
@@ -61,6 +62,7 @@ class QuizState {
     }
 
     private startTimer() {
+        this.stopTimer();
         this.quizIntervalId = setInterval(() => {
             this.timeElapsed++;
         }, 1000)
