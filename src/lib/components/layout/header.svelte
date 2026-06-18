@@ -1,9 +1,24 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { user, isLoggedIn, logout } from '$lib/stores/auth';
+
+	function handleLogout() {
+		logout();
+		goto('/login');
+	}
+</script>
+
 <header class="main-header">
 	<a href="/" class="brand">Quiz Challenge</a>
-	<nav>
-		<a href="/">Home</a>
-		<a href="/quiz">Start Quiz</a>
-	</nav>
+
+	{#if $isLoggedIn}
+		<nav>
+			<a href="/">Home</a>
+			<a href="/quiz">Start Quiz</a>
+			<span class="user-label">{$user?.userName}</span>
+			<button class="logout-btn" onclick={handleLogout}>Logout</button>
+		</nav>
+	{/if}
 </header>
 
 <style>
@@ -27,6 +42,7 @@
 
 	nav {
 		display: flex;
+		align-items: center;
 		gap: 1.5rem;
 	}
 
@@ -38,6 +54,29 @@
 	}
 
 	nav a:hover {
+		color: white;
+	}
+
+	.user-label {
+		font-size: 0.875rem;
+		color: var(--border-strong);
+		padding: 0.25rem 0.6rem;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 4px;
+	}
+
+	.logout-btn {
+		background: transparent;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		color: var(--border-strong);
+		font-size: 0.875rem;
+		padding: 0.3rem 0.75rem;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	.logout-btn:hover {
+		background: rgba(255, 255, 255, 0.15);
 		color: white;
 	}
 </style>
