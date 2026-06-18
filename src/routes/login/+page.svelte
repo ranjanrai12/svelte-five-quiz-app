@@ -127,12 +127,7 @@
 		cursor: pointer;
 	}
 
-	button[type='submit']:hover:not(:disabled) {
+	button[type='submit']:hover {
 		background: var(--primary-hover);
-	}
-
-	button[type='submit']:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
 	}
 </style>
