@@ -5,6 +5,6 @@ import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = ({ url }) => {
     if (!get(isLoggedIn) && url.pathname !== '/login') {
-        redirect(302, '/login');
+        throw redirect(302, '/login');
     }
 };

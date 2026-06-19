@@ -1,8 +1,5 @@
 import { derived, writable } from 'svelte/store';
-
-interface AuthUser {
-    userName: string;
-}
+import type { AuthUser } from '$lib/types/auth';
 
 export const user = writable<AuthUser | null>(null);
 

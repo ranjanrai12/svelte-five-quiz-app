@@ -1,14 +1,8 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { get } from 'svelte/store';
-	import { isLoggedIn } from '$lib/stores/auth';
 
 	function startQuiz() {
-		if (get(isLoggedIn)) {
-			goto('/quiz');
-		} else {
-			goto('/login');
-		}
+		goto('/quiz');
 	}
 </script>
 

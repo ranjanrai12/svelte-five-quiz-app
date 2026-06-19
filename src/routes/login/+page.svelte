@@ -26,7 +26,6 @@
 		<h1>Sign in</h1>
 		<form onsubmit={handleLogin}>
 			<div class="field">
-				<label for="userName">User Name</label>
 				<input
 					id="userName"
 					type="text"
@@ -79,12 +78,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
-	}
-
-	label {
-		font-size: 0.875rem;
-		font-weight: 500;
-		color: var(--text);
 	}
 
 	input {
