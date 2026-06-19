@@ -4,6 +4,7 @@
 	import { quiz } from '$lib/state/quiz.svelte';
 	import ProgressBarReport from '$lib/components/quiz/ProgressBarReport.svelte';
 	import { goto } from '$app/navigation';
+	import { ROUTES } from '$lib/constants/routes';
 
 	const currentQuestion = $derived(quiz.currentQuestion);
 
@@ -46,7 +47,7 @@
 
 	function handleSubmit() {
 		quiz.submitQuiz();
-		goto('/quiz/results');
+		goto(ROUTES.quizResults);
 	}
 </script>
 

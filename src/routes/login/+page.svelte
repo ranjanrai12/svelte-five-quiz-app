@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { user } from '$lib/stores/auth';
+	import { ROUTES } from '$lib/constants/routes';
 
 	let userName = $state('');
 	let error = $state('');
@@ -17,7 +18,7 @@
             return;
         }
 		user.set({ userName: name });
-		goto('/');
+		goto(ROUTES.home);
 	}
 </script>
 

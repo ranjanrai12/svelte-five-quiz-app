@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { ROUTES } from '$lib/constants/routes';
 
 	function startQuiz() {
-		goto('/quiz');
+		goto(ROUTES.quiz);
 	}
 </script>
 

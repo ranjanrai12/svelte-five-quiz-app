@@ -2,14 +2,15 @@
     import { goto } from "$app/navigation";
     import { quiz } from "$lib/state/quiz.svelte";
     import { formatTime } from "$lib/utils/time";
+    import { ROUTES } from "$lib/constants/routes";
 
     function handleRetake() {
         quiz.resetQuiz();
-        goto("/quiz");
+        goto(ROUTES.quiz);
     }
 
     function handleGoHome() {
-        goto("/");
+        goto(ROUTES.home);
     }
 </script>
 

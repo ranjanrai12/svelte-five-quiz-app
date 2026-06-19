@@ -1,20 +1,21 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { user, isLoggedIn, logout } from '$lib/stores/auth';
+	import { ROUTES } from '$lib/constants/routes';
 
 	function handleLogout() {
 		logout();
-		goto('/login');
+		goto(ROUTES.login);
 	}
 </script>
 
 <header class="main-header">
-	<a href="/" class="brand">Quiz Challenge</a>
+	<a href={ROUTES.home} class="brand">Quiz Challenge</a>
 
 	{#if $isLoggedIn}
 		<nav>
-			<a href="/">Home</a>
-			<a href="/quiz">Start Quiz</a>
+			<a href={ROUTES.home}>Home</a>
+			<a href={ROUTES.quiz}>Start Quiz</a>
 			<span class="user-label">{$user?.userName}</span>
 			<button class="logout-btn" onclick={handleLogout}>Logout</button>
 		</nav>
