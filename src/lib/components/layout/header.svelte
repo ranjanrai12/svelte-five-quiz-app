@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { auth } from '$lib/stores/auth';
-	import { ROUTES } from '$lib/constants/routes';
+	import { auth } from '$lib/stores';
+	import { ROUTES } from '$lib/constants';
 
 	const { user, isLoggedIn } = auth;
 

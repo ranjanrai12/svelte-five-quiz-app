@@ -1,4 +1,4 @@
-import type { QuizQuestion, QuizResult } from "$lib/types/quiz";
+import type { QuizQuestion, QuizResult } from "$lib/types";
 
 type AnswerMap = Map<number, string | string[]>;
 

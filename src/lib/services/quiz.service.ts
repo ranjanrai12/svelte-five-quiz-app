@@ -1,4 +1,4 @@
-import type { QuizQuestion } from '$lib/types/quiz';
+import type { QuizQuestion } from '$lib/types';
 import questionsData from '$lib/data/quiz-questions-response.json';
 
 export async function fetchQuestions(): Promise<QuizQuestion[]> {

@@ -1,5 +1,5 @@
 import { derived, writable } from 'svelte/store';
-import type { AuthUser } from '$lib/types/auth';
+import type { AuthUser } from '$lib/types';
 
 class AuthStore {
     readonly user = writable<AuthUser | null>(null);

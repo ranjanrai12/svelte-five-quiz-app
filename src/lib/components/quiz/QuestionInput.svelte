@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { QuizQuestion } from "$lib/types/quiz";
+	import type { QuizQuestion } from "$lib/types";
 
 	interface Props {
 		question: QuizQuestion;

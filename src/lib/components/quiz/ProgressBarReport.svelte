@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { formatTime } from "$lib/utils/time";
+    import { formatTime } from "$lib/utils";
 
 	interface Props {
 		total: number;

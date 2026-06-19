@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { ROUTES } from '$lib/constants/routes';
+	import { ROUTES } from '$lib/constants';
 
 	function startQuiz() {
 		goto(ROUTES.quiz);
