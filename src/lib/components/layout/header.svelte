@@ -82,4 +82,22 @@
 		background: rgba(255, 255, 255, 0.15);
 		color: white;
 	}
+
+	@media (max-width: 640px) {
+		.main-header {
+			flex-wrap: wrap;
+			gap: 0.75rem 1rem;
+			padding: 0.85rem 1rem;
+		}
+
+		nav {
+			width: 100%;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		nav a {
+			font-size: 0.9rem;
+		}
+	}
 </style>

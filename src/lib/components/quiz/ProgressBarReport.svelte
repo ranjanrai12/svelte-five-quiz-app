@@ -118,4 +118,21 @@
 			}
 		}
 	}
+
+	@media (max-width: 640px) {
+		.status-bar {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 1rem;
+			padding: 1rem;
+
+			.stats {
+				justify-content: space-between;
+			}
+
+			button {
+				width: 100%;
+			}
+		}
+	}
 </style>

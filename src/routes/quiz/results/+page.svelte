@@ -119,7 +119,9 @@
         font-size: 0.9rem;
         color: var(--primary-hover);
         display: flex;
+        flex-wrap: wrap;
         gap: 0.4rem;
+        min-width: 0;
     }
 
     .label {
@@ -152,5 +154,23 @@
 
     button.secondary:hover {
         background: var(--border-strong);
+    }
+
+    @media (max-width: 640px) {
+        .results {
+            gap: 1.5rem;
+        }
+
+        .summary h2 {
+            font-size: 1.4rem;
+        }
+
+        .actions {
+            flex-direction: column;
+        }
+
+        .actions button {
+            width: 100%;
+        }
     }
 </style>

@@ -24,4 +24,10 @@
 		flex: 1;
 		padding: 2rem;
 	}
+
+	@media (max-width: 640px) {
+		main {
+			padding: 1rem;
+		}
+	}
 </style>

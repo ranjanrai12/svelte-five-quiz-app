@@ -32,4 +32,15 @@
 		font-size: 1rem;
 		font-weight: 500;
 	}
+
+	@media (max-width: 640px) {
+		.welcome {
+			margin-top: 3rem;
+		}
+
+		.welcome h2 {
+			font-size: 1.3rem;
+			text-align: center;
+		}
+	}
 </style>

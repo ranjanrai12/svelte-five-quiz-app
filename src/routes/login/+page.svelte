@@ -116,4 +116,10 @@
 	button[type='submit']:hover {
 		background: var(--primary-hover);
 	}
+
+	@media (max-width: 640px) {
+		.login-card {
+			padding: 1.5rem;
+		}
+	}
 </style>

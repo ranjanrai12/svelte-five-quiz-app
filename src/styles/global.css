@@ -21,11 +21,16 @@
 	padding: 0;
 }
 
+html {
+	overflow-x: hidden;
+}
+
 body {
 	font-size: 16px;
 	color: var(--text);
 	background: var(--bg);
 	line-height: 1.6;
+	overflow-wrap: break-word;
 }
 
 a {

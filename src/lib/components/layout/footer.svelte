@@ -24,4 +24,10 @@
 		font-size: 0.8rem;
 		color: var(--text-subtle);
 	}
+
+	@media (max-width: 640px) {
+		.footer {
+			padding: 1rem;
+		}
+	}
 </style>

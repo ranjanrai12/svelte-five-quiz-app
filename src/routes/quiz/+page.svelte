@@ -191,4 +191,10 @@
 			}
 		}
 	}
+
+	@media (max-width: 640px) {
+		.quiz-wrapper .quiz {
+			padding: 1.25rem;
+		}
+	}
 </style>
