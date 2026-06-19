@@ -5,11 +5,7 @@
 	import ProgressBarReport from '$lib/components/quiz/ProgressBarReport.svelte';
 	import { goto } from '$app/navigation';
 
-	const currentQuestion = $derived(quiz.allQuestions[quiz.currentIndex]);
-	const answeredCount = $derived(quiz.answers.size);
-	const allAnswered = $derived(
-		quiz.allQuestions.length > 0 && quiz.allQuestions.length === quiz.answers.size
-	);
+	const currentQuestion = $derived(quiz.currentQuestion);
 
 	const textValue = $derived.by(() => {
 		if (!currentQuestion) return '';
@@ -61,15 +57,15 @@
 {:else if currentQuestion}
 	<div class="quiz-wrapper">
 		<ProgressBarReport
-			total={quiz.allQuestions.length}
-			answered={answeredCount}
+			total={quiz.totalQuestions}
+			answered={quiz.answeredCount}
 			elapsed={quiz.timeElapsed}
-			{allAnswered}
+			allAnswered={quiz.allAnswered}
 			onsubmit={handleSubmit}
 		/>
 		<section class="quiz">
 			<p class="progress">
-				Question {quiz.currentIndex + 1} of {quiz.allQuestions.length}
+				Question {quiz.currentIndex + 1} of {quiz.totalQuestions}
 			</p>
 			<h2>{currentQuestion.question}</h2>
 
@@ -86,12 +82,12 @@
 				<button
 					class="btn-secondary"
 					onclick={() => quiz.prevQuestion()}
-					disabled={quiz.currentIndex === 0}>Back</button
+					disabled={quiz.isFirstQuestion}>Back</button
 				>
 				<button
 					class="btn-primary"
 					onclick={() => quiz.nextQuestion()}
-					disabled={quiz.currentIndex === quiz.allQuestions.length - 1}>Next</button
+					disabled={quiz.isLastQuestion}>Next</button
 				>
 			</div>
 		</section>

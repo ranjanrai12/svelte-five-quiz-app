@@ -1,5 +1,27 @@
 import { fetchQuestions } from "$lib/services/quiz.service";
-import type { QuizQuestion } from "$lib/types/quiz";
+import type { QuizQuestion, QuizResult } from "$lib/types/quiz";
+
+function gradeAnswer(question: QuizQuestion, answer: string | string[]): boolean {
+    switch (question.type) {
+        case "multiple": {
+            const correct = [...(question.correctAnswer as string[])].sort();
+            const selected = [...((answer as string[]) ?? [])].sort();
+            return (
+                correct.length === selected.length &&
+                correct.every((item, index) => item === selected[index])
+            );
+        }
+        case "textbox":
+            return (
+                (answer as string).trim().toLowerCase() ===
+                (question.correctAnswer as string).toLowerCase()
+            );
+        case "textarea":
+            return (answer as string).trim().length > 0;
+        default:
+            return answer === question.correctAnswer;
+    }
+}
 
 class QuizState {
     allQuestions = $state<QuizQuestion[]>([])
@@ -8,6 +30,28 @@ class QuizState {
     currentIndex = $state(0)
     answers = $state<Map<number, string | string[]>>(new Map());
     timeElapsed = $state(0);
+
+    currentQuestion = $derived(this.allQuestions[this.currentIndex]);
+    totalQuestions = $derived(this.allQuestions.length);
+    answeredCount = $derived(this.answers.size);
+    allAnswered = $derived(this.totalQuestions > 0 && this.totalQuestions === this.answeredCount);
+    isFirstQuestion = $derived(this.currentIndex === 0);
+    isLastQuestion = $derived(this.currentIndex === this.totalQuestions - 1);
+
+    results = $derived<QuizResult[]>(
+        this.allQuestions.map((question) => {
+            const userAnswer = this.answers.get(question.id) ?? "";
+            return {
+                question,
+                userAnswer,
+                correct: gradeAnswer(question, userAnswer),
+            };
+        })
+    );
+    score = $derived(this.results.filter((r) => r.correct).length);
+    percentage = $derived(
+        this.totalQuestions === 0 ? 0 : Math.round((this.score / this.totalQuestions) * 100)
+    );
 
     private quizIntervalId: null | number = null;
 

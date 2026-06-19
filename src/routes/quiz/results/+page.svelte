@@ -1,44 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { quiz } from "$lib/state/quiz.svelte";
-    import type { QuizQuestion, QuizResult } from "$lib/types/quiz";
     import { formatTime } from "$lib/utils/time";
-
-    function checkAnswer(question: QuizQuestion, answer: string | string[]): boolean {
-        switch (question.type) {
-            case "multiple": {
-                const correct = [...question.correctAnswer].sort();
-                const selected = [...(answer as string[])].sort();
-                return (
-                    correct.length === selected.length &&
-                    correct.every((item, index) => item === selected[index])
-                );
-            }
-            case "textbox":
-                return (
-                    (answer as string).trim().toLowerCase() ===
-                    (question.correctAnswer as string).toLowerCase()
-                );
-            case "textarea":
-                return (answer as string).trim().length > 0;
-            default:
-                return answer === question.correctAnswer;
-        }
-    }
-
-    const results = $derived<QuizResult[]>(
-        quiz.allQuestions.map((question) => {
-            const userAnswer = quiz.answers.get(question.id) ?? "";
-            return {
-                question,
-                userAnswer,
-                correct: checkAnswer(question, userAnswer),
-            };
-        }),
-    );
-
-    const score = $derived(results.filter((r) => r.correct).length);
-    const percentage = $derived(Math.round((score / quiz.allQuestions.length) * 100));
 
     function handleRetake() {
         quiz.resetQuiz();
@@ -53,14 +16,14 @@
 <section class="results">
     <div class="summary">
         <h2>
-            You scored {score} / {quiz.allQuestions.length}
-            <span class="percentage">({percentage}%)</span>
+            You scored {quiz.score} / {quiz.totalQuestions}
+            <span class="percentage">({quiz.percentage}%)</span>
         </h2>
         <p class="time">Completed in {formatTime(quiz.timeElapsed)}</p>
     </div>
 
     <ol class="breakdown">
-        {#each results as result, i}
+        {#each quiz.results as result, i}
             <li class="result-item {result.correct ? 'result-item--correct' : 'result-item--wrong'}">
                 <p class="question-text">{i + 1}. {result.question.question}</p>
                 <p class="answer-row">
