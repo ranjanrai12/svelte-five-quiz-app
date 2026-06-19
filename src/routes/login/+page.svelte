@@ -23,7 +23,6 @@
 
 <div class="login-wrapper">
 	<div class="login-card">
-		<h1>Sign in</h1>
 		<form onsubmit={handleLogin}>
 			<div class="field">
 				<input
@@ -59,13 +58,6 @@
 		padding: 2.5rem;
 		width: 100%;
 		max-width: 400px;
-	}
-
-	h1 {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--text);
-		margin-bottom: 0.25rem;
 	}
 
 	form {
