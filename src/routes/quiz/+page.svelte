@@ -1,24 +1,36 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import QuestionInput from '$lib/components/quiz/QuestionInput.svelte';
-	import { quiz } from '$lib/state/quiz.svelte';
+	import { quiz } from '$lib/stores/quiz';
 	import ProgressBarReport from '$lib/components/quiz/ProgressBarReport.svelte';
 	import { goto } from '$app/navigation';
 	import { ROUTES } from '$lib/constants/routes';
 
-	const currentQuestion = $derived(quiz.currentQuestion);
+	const {
+		currentQuestion,
+		loading,
+		errorMessage,
+		totalQuestions,
+		answeredCount,
+		timeElapsed,
+		allAnswered,
+		currentIndex,
+		isFirstQuestion,
+		isLastQuestion,
+		answers
+	} = quiz;
 
 	const textValue = $derived.by(() => {
-		if (!currentQuestion) return '';
+		if (!$currentQuestion) return '';
 
-		const saved = quiz.getAnswer(currentQuestion.id);
+		const saved = $answers.get($currentQuestion.id);
 		return typeof saved === 'string' ? saved : '';
 	});
 
 	const multipleValue = $derived.by(() => {
-		if (!currentQuestion) return [];
+		if (!$currentQuestion) return [];
 
-		const saved = quiz.getAnswer(currentQuestion.id);
+		const saved = $answers.get($currentQuestion.id);
 		return Array.isArray(saved) ? [...saved] : [];
 	});
 
@@ -29,12 +41,12 @@
 
 	function handleTextChange(value: string) {
 		value.trim()
-			? quiz.setAnswer(currentQuestion.id, value)
-			: quiz.deleteAnswer(currentQuestion.id);
+			? quiz.setAnswer($currentQuestion.id, value)
+			: quiz.deleteAnswer($currentQuestion.id);
 	}
 
 	function handleRadio(option: string) {
-		quiz.setAnswer(currentQuestion.id, option);
+		quiz.setAnswer($currentQuestion.id, option);
 	}
 
 	function toggleOption(option: string) {
@@ -42,7 +54,7 @@
 			? multipleValue.filter((o) => o !== option)
 			: [...multipleValue, option];
 
-		next.length ? quiz.setAnswer(currentQuestion.id, next) : quiz.deleteAnswer(currentQuestion.id);
+		next.length ? quiz.setAnswer($currentQuestion.id, next) : quiz.deleteAnswer($currentQuestion.id);
 	}
 
 	function handleSubmit() {
@@ -51,27 +63,27 @@
 	}
 </script>
 
-{#if quiz.loading}
+{#if $loading}
 	<div class="status">Loading.....</div>
-{:else if quiz.errorMessage}
-	<div class="status error">{quiz.errorMessage}</div>
-{:else if currentQuestion}
+{:else if $errorMessage}
+	<div class="status error">{$errorMessage}</div>
+{:else if $currentQuestion}
 	<div class="quiz-wrapper">
 		<ProgressBarReport
-			total={quiz.totalQuestions}
-			answered={quiz.answeredCount}
-			elapsed={quiz.timeElapsed}
-			allAnswered={quiz.allAnswered}
+			total={$totalQuestions}
+			answered={$answeredCount}
+			elapsed={$timeElapsed}
+			allAnswered={$allAnswered}
 			onsubmit={handleSubmit}
 		/>
 		<section class="quiz">
 			<p class="progress">
-				Question {quiz.currentIndex + 1} of {quiz.totalQuestions}
+				Question {$currentIndex + 1} of {$totalQuestions}
 			</p>
-			<h2>{currentQuestion.question}</h2>
+			<h2>{$currentQuestion.question}</h2>
 
 			<QuestionInput
-				question={currentQuestion}
+				question={$currentQuestion}
 				{textValue}
 				{multipleValue}
 				onTextChange={handleTextChange}
@@ -83,12 +95,12 @@
 				<button
 					class="btn-secondary"
 					onclick={() => quiz.prevQuestion()}
-					disabled={quiz.isFirstQuestion}>Back</button
+					disabled={$isFirstQuestion}>Back</button
 				>
 				<button
 					class="btn-primary"
 					onclick={() => quiz.nextQuestion()}
-					disabled={quiz.isLastQuestion}>Next</button
+					disabled={$isLastQuestion}>Next</button
 				>
 			</div>
 		</section>

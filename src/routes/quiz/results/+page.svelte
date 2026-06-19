@@ -1,8 +1,10 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { quiz } from "$lib/state/quiz.svelte";
+    import { quiz } from "$lib/stores/quiz";
     import { formatTime } from "$lib/utils/time";
     import { ROUTES } from "$lib/constants/routes";
+
+    const { score, totalQuestions, percentage, timeElapsed, results } = quiz;
 
     function handleRetake() {
         quiz.resetQuiz();
@@ -17,14 +19,14 @@
 <section class="results">
     <div class="summary">
         <h2>
-            You scored {quiz.score} / {quiz.totalQuestions}
-            <span class="percentage">({quiz.percentage}%)</span>
+            You scored {$score} / {$totalQuestions}
+            <span class="percentage">({$percentage}%)</span>
         </h2>
-        <p class="time">Completed in {formatTime(quiz.timeElapsed)}</p>
+        <p class="time">Completed in {formatTime($timeElapsed)}</p>
     </div>
 
     <ol class="breakdown">
-        {#each quiz.results as result, i}
+        {#each $results as result, i}
             <li class="result-item {result.correct ? 'result-item--correct' : 'result-item--wrong'}">
                 <p class="question-text">{i + 1}. {result.question.question}</p>
                 <p class="answer-row">

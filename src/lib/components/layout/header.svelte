@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { user, isLoggedIn, logout } from '$lib/stores/auth';
+	import { auth } from '$lib/stores/auth';
 	import { ROUTES } from '$lib/constants/routes';
 
+	const { user, isLoggedIn } = auth;
+
 	function handleLogout() {
-		logout();
+		auth.logout();
 		goto(ROUTES.login);
 	}
 </script>

@@ -1,10 +1,17 @@
 import { derived, writable } from 'svelte/store';
 import type { AuthUser } from '$lib/types/auth';
 
-export const user = writable<AuthUser | null>(null);
+class AuthStore {
+    readonly user = writable<AuthUser | null>(null);
+    readonly isLoggedIn = derived(this.user, (user) => user !== null);
 
-export const isLoggedIn = derived(user, (user) => user !== null);
+    login(userName: string) {
+        this.user.set({ userName });
+    }
 
-export function logout() {
-    user.set(null);
+    logout() {
+        this.user.set(null);
+    }
 }
+
+export const auth = new AuthStore();

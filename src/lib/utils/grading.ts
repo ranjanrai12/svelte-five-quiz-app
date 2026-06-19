@@ -1,4 +1,6 @@
-import type { QuizQuestion } from "$lib/types/quiz";
+import type { QuizQuestion, QuizResult } from "$lib/types/quiz";
+
+type AnswerMap = Map<number, string | string[]>;
 
 export function gradeAnswer(question: QuizQuestion, answer: string | string[]): boolean {
     switch (question.type) {
@@ -20,4 +22,23 @@ export function gradeAnswer(question: QuizQuestion, answer: string | string[]): 
         default:
             return answer === question.correctAnswer;
     }
+}
+
+export function buildResults(questions: QuizQuestion[], answers: AnswerMap): QuizResult[] {
+    return questions.map((question) => {
+        const userAnswer = answers.get(question.id) ?? "";
+        return {
+            question,
+            userAnswer,
+            correct: gradeAnswer(question, userAnswer),
+        };
+    });
+}
+
+export function calculateScore(results: QuizResult[]): number {
+    return results.filter((result) => result.correct).length;
+}
+
+export function calculatePercentage(score: number, total: number): number {
+    return total === 0 ? 0 : Math.round((score / total) * 100);
 }
