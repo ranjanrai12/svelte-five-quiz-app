@@ -1,27 +1,32 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { quiz } from "$lib/stores";
+    import { quiz, auth } from "$lib/stores";
     import { formatTime } from "$lib/utils";
     import { ROUTES } from "$lib/constants";
 
     const { score, totalQuestions, percentage, timeElapsed, results } = quiz;
+    const { user } = auth;
 
     function handleRetake() {
         quiz.resetQuiz();
         goto(ROUTES.quiz);
     }
 
-    function handleGoHome() {
+    function handleLogout() {
+        quiz.resetQuiz();
+        auth.logout();
         goto(ROUTES.home);
     }
 </script>
 
 <section class="results">
     <div class="summary">
-        <h2>
+        <h2>Great job, {$user?.userName}!</h2>
+        <p class="summary-sub">Here is your performance summary</p>
+        <p class="score">
             You scored {$score} / {$totalQuestions}
             <span class="percentage">({$percentage}%)</span>
-        </h2>
+        </p>
         <p class="time">Completed in {formatTime($timeElapsed)}</p>
     </div>
 
@@ -53,7 +58,7 @@
 
     <div class="actions">
         <button onclick={handleRetake}>Retake Quiz</button>
-        <button class="secondary" onclick={handleGoHome}>Go Home</button>
+        <button class="secondary" onclick={handleLogout}>Log Out</button>
     </div>
 </section>
 
@@ -79,6 +84,16 @@
         font-size: 1.25rem;
         font-weight: 400;
         color: var(--text-muted);
+    }
+
+    .summary-sub {
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+    }
+
+    .score {
+        font-size: 1.4rem;
+        font-weight: 700;
     }
 
     .time {

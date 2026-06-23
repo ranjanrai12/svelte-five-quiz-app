@@ -7,16 +7,15 @@
 
 	function handleLogout() {
 		auth.logout();
-		goto(ROUTES.login);
+		goto(ROUTES.home);
 	}
 </script>
 
 <header class="main-header">
-	<a href={ROUTES.home} class="brand">Quiz Challenge</a>
+	<a href={ROUTES.quiz} class="brand">Quiz Challenge</a>
 
 	{#if $isLoggedIn}
 		<nav>
-			<a href={ROUTES.home}>Home</a>
 			<a href={ROUTES.quiz}>Start Quiz</a>
 			<span class="user-label">{$user?.userName}</span>
 			<button class="logout-btn" onclick={handleLogout}>Logout</button>

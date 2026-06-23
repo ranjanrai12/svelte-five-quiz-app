@@ -5,7 +5,13 @@ import { ROUTES } from '$lib/constants';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = ({ url }) => {
-    if (!get(auth.isLoggedIn) && url.pathname !== ROUTES.login) {
-        throw redirect(302, ROUTES.login);
+    const loggedIn = get(auth.isLoggedIn);
+
+    if (!loggedIn && url.pathname !== ROUTES.home) {
+        throw redirect(302, ROUTES.home);
+    }
+
+    if (loggedIn && url.pathname === ROUTES.home) {
+        throw redirect(302, ROUTES.quiz);
     }
 };
