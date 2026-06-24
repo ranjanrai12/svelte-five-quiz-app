@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { quiz, auth } from "$lib/stores";
-    import { formatTime } from "$lib/utils";
+    import { formatTime } from "quiz-core";
     import { ROUTES } from "$lib/constants";
 
     const { score, totalQuestions, percentage, timeElapsed, results } = quiz;

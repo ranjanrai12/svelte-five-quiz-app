@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import QuestionInput from '$lib/components/quiz/QuestionInput.svelte';
+	import { QuestionInput, ProgressBarReport } from 'quiz-core';
 	import { quiz } from '$lib/stores';
-	import ProgressBarReport from '$lib/components/quiz/ProgressBarReport.svelte';
 	import { goto } from '$app/navigation';
 	import { ROUTES } from '$lib/constants';
 

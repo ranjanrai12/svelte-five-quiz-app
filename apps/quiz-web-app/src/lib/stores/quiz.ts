@@ -1,7 +1,11 @@
 import { writable, derived, get } from 'svelte/store';
-import { fetchQuestions } from '$lib/services/quiz.service';
-import { buildResults, calculateScore, calculatePercentage } from '$lib/utils';
-import type { QuizQuestion } from '$lib/types';
+import {
+	fetchQuestions,
+	buildResults,
+	calculateScore,
+	calculatePercentage,
+	type QuizQuestion
+} from 'quiz-core';
 
 type AnswerMap = Map<number, string | string[]>;
 
