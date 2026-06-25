@@ -12,5 +12,8 @@
 	},
 	"engines": {
 		"pnpm": ">=9"
+	},
+	"devDependencies": {
+		"pnpm": "^11.9.0"
 	}
 }
